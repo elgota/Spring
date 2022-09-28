@@ -1,35 +1,29 @@
 
 package com.egg.noticias.entidades;
 
+import com.egg.noticias.enumeraciones.Rol;
 import java.util.Date;
 import javax.persistence.Entity;
-
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Noticia {
-    
+public class Usuario {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    private String titulo;
-    private String cuerpo;
-    
-    @Temporal(TemporalType.DATE)
+    private String nombreUsuario;
+    private String password;
     private Date alta;
     
-    @OneToOne
-    private Imagen imagen;
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
 
-    public Noticia() {
+    public Usuario() {
     }
 
     public String getId() {
@@ -40,20 +34,20 @@ public class Noticia {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
-    public String getCuerpo() {
-        return cuerpo;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCuerpo(String cuerpo) {
-        this.cuerpo = cuerpo;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getAlta() {
@@ -64,17 +58,15 @@ public class Noticia {
         this.alta = alta;
     }
 
-    public Imagen getImagen() {
-        return imagen;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setImagen(Imagen imagen) {
-        this.imagen = imagen;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
-    
     
     
     
     
 }
-

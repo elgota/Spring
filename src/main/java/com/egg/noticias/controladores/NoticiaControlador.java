@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -33,9 +34,9 @@ public class NoticiaControlador {
     }
 
     @PostMapping("/carga")
-    public String carga(@RequestParam String titulo, @RequestParam String cuerpo, ModelMap modelo) {
+    public String carga(@RequestParam String titulo, @RequestParam String cuerpo, ModelMap modelo, @RequestParam(required=false)MultipartFile archivo) {
         try {
-            noticiaServicio.crearNoticia(titulo, cuerpo);
+            noticiaServicio.crearNoticia(archivo, titulo, cuerpo);
             modelo.put("exito", "La noticia fue cargada correctamente!");
             
         } catch (MiException ex) {
